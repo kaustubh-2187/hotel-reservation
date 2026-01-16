@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='style.css')}}">
+    <title>Hotel Reservation Prediction</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Hotel Reservation Prediction</h2>
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="no_of_adults">Number of Adults</label>
+                <input type="number" name="no_of_adults" id="no_of_adults" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="no_of_children">Number of Children</label>
+                <input type="number" name="no_of_children" id="no_of_children" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="no_of_weekend_nights">Number of Weekend Nights</label>
+                <input type="number" name="no_of_weekend_nights" id="no_of_weekend_nights" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="no_of_week_nights">Number of Week Nights</label>
+                <input type="number" name="no_of_week_nights" id="no_of_week_nights" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="type_of_meal_plan">Type of Meal Plan</label>
+                <select name="type_of_meal_plan" id="type_of_meal_plan" required>
+                    <option value="">Select Meal Plan</option>
+                    <option value="0">Meal Plan 1</option>
+                    <option value="1">Meal Plan 2</option>
+                    <option value="2">Meal Plan 3</option>
+                    <option value="3">Not Selected</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="required_car_parking_space">Required Car Parking Space</label>
+                <select name="required_car_parking_space" id="required_car_parking_space" required>
+                    <option value="">Select Option</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="room_type_reserved">Room Type Reserved</label>
+                <select name="room_type_reserved" id="room_type_reserved" required>
+                    <option value="">Select Room Type</option>
+                    <option value="0">Room Type 1</option>
+                    <option value="1">Room Type 2</option>
+                    <option value="2">Room Type 3</option>
+                    <option value="3">Room Type 4</option>
+                    <option value="4">Room Type 5</option>
+                    <option value="5">Room Type 6</option>
+                    <option value="6">Room Type 7</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="lead_time">Lead Time (days)</label>
+                <input type="number" name="lead_time" id="lead_time" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="arrival_year">Arrival Year</label>
+                <input type="number" name="arrival_year" id="arrival_year" min="2015" max="2030" required>
+            </div>
+
+            <div class="form-group">
+                <label for="arrival_month">Arrival Month</label>
+                <input type="number" name="arrival_month" id="arrival_month" min="1" max="12" required>
+            </div>
+            
+            <button type="submit">Predict</button>
+
+        </form>
+
+        {% if prediction is not none %}
+        <div class="result">
+            {% if prediction == 0 %}
+            <p>The Customer is going to cancel their reservation</p>
+            {% elif prediction == 1 %}
+            <p>The Customer is not going to cancel their reservation</p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
